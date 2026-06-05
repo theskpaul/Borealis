@@ -5,7 +5,6 @@ IFS=$'\n\t'
 umask 022
 
 # Enable Nix mount
-systemctl enable nix.mount
 systemctl enable var-srv-shared_tmp.mount
 
 # Daemons
