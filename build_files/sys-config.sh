@@ -12,6 +12,5 @@ systemctl enable var-srv-shared_tmp.mount
 systemctl enable podman.socket
 systemctl enable docker.socket
 systemctl enable me.proton.vpn.split_tunneling.service
-systemctl enable ananicy-cpp
 
 # systemctl enable sddm.service
