@@ -15,7 +15,9 @@ dnf5 --setopt=install_weak_deps=False install -y \
    nicstat \
    numactl \
    usbmuxd \
-   waypipe
+   waypipe \
+   snapper \
+   btrfs-assistant
 
 # dnf copr enable -y bieszczaders/kernel-cachyos-addons
 # dnf install ananicy-cpp -y
