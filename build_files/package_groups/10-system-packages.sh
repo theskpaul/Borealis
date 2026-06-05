@@ -1,0 +1,23 @@
+#!/bin/bash
+
+set -ouex pipefail
+IFS=$'\n\t'
+umask 022
+
+dnf5 --setopt=install_weak_deps=False install -y \
+   bindfs \
+   clamav \
+   clamtk \
+   igt-gpu-tools \
+   gparted \
+   irqbalance \
+   uresourced \
+   nicstat \
+   numactl \
+   usbmuxd \
+   waypipe
+
+# dnf copr enable -y bieszczaders/kernel-cachyos-addons
+# dnf install ananicy-cpp -y
+
+dnf5 config-manager setopt copr:copr.fedorainfracloud.org:bieszczaders:kernel-cachyos-addons.enabled=0

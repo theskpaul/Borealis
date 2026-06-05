@@ -1,0 +1,19 @@
+[Unit]
+Description=Bind-mount shared tmp for %i
+After=var-srv-shared_tmp.mount
+RequiresMountsFor=/var/srv/shared_tmp
+
+[Service]
+Type=forking
+ExecCondition=/bin/sh -c 'home="$(getent passwd %i | cut -d: -f6)"; [ -n "$home" ] && [ -d "$home" ] || { echo "Failed to bind temp due to user: %i doesn\'t exist" >&2; exit 1; }'
+ExecStartPre=/bin/sh -c '[ -d "/var/home/%i/Temp" ] || /bin/mkdir -p /var/home/%i/Temp'
+ExecStart=/usr/bin/bindfs \
+  --map=root/%i:@root/@%i \
+  --create-for-user=root \
+  --create-for-group=root \
+  --perms=u=rwX:g=rw:o= \
+  /var/srv/shared_tmp /var/home/%i/Temp
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,12 @@
+#!/usr/bin/bash
+
+set -xeuo pipefail
+IFS=$'\n\t'
+umask 022
+
+dnf install -y --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release
+dnf5 config-manager setopt terra.enabled=1
+dnf5 --setopt=install_weak_deps=False install -y \
+    zed
+
+dnf5 config-manager setopt terra.enabled=0

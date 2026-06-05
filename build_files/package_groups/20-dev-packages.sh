@@ -1,0 +1,26 @@
+#!/usr/bin/bash
+
+set -xeuo pipefail
+IFS=$'\n\t'
+umask 022
+
+dnf5 --setopt=install_weak_deps=False install -y \
+         toolbox \
+         btop \
+         gh \
+         alacritty \
+         neovim \
+         android-tools \
+         bcc \
+         bpftop \
+         bpftrace \
+         ccache \
+         git-subtree \
+         podman-machine \
+         podman-tui \
+         python3-ramalama \
+         restic \
+         rclone \
+         sysprof \
+         tiptop \
+         zsh
